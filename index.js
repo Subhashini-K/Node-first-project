@@ -1,6 +1,10 @@
 // Import the Express module
 const express = require('express');
 
+//import mongoose
+const mongoose = require('mongoose');
+
+
 // Create an instance of Express
 const app = express();
 
@@ -27,7 +31,17 @@ app.post('/post_test',(req,res)=>{
 })
 
 
+//connecting to mongoDB
+mongoose.connect('mongodb://127.0.0.1:27018/test')
+  .then(() => {console.log('Connected!');
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+      });
+  }).catch(()=>console.log('connection error'));
+
+
+
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+
+
+
